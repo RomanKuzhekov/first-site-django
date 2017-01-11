@@ -1,0 +1,17 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+    <div class="posts">
+        {% for post in posts %}
+            <h1>{{ post.title }}</h1>
+            <div class="content">
+                <arcticle>
+                    {% if post.post_img %}
+                        <a class="fancybox" href="{{ MEDIA_URL }}{{ post.post_img }}" data-fancybox-group="gallery" title="Дома Волгограда"><img src="{{ MEDIA_URL }}{{ post.post_img }}" alt="Дома Волгограда" /></a>
+                    {% endif %}
+                    {% autoescape off%}{{ post.text }}{% endautoescape %}
+                </arcticle>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

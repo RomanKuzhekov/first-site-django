@@ -1,0 +1,12 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+    <div class="posts">
+        <h1>Гостевая книга</h1>
+        <div class="content">
+            <arcticle>
+                <p>Спасибо за ваше обращение! В ближайшее время вам позвонит наш менеджер. Вы можете вернуться на  <a href="{% url 'index' %}" class="guest_comment_post">Главную страницу</a>.</p>
+            </arcticle>
+        </div>
+    </div>
+{% endblock content %}

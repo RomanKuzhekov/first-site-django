@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+    <div class="posts">
+        <h1>{{ article.title }}</h1>
+        <div class="content">
+            <arcticle>
+                {% if article.article_img %}
+                    <a class="fancybox" href="{{ MEDIA_URL }}{{ article.article_img }}" data-fancybox-group="gallery" title="Дома Волгограда"><img src="{{ MEDIA_URL }}{{ article.article_img }}" alt="Дома Волгограда" /></a>
+                {% endif %}
+                {% autoescape off%}{{ article.text }}{% endautoescape %}
+            </arcticle>
+            <div class="last_articles">
+                <h4>Последние добавленные статьи:</h4>
+                <ul>
+                    {% for post in articles %}
+                        {% if post.id != article.id %}
+                            <li><a href="{% url 'articles_detail' pk=post.pk %}">{{ post.title }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+    <div class="posts">
+        <div class="content">
+            <arcticle>
+                <p>Спасибо за ваш отзыв! После проверки сообщения администратором ваш отзыв появится на сайте. Вы можете вернуться в  <a href="{% url 'guestbook' %}" class="guest_comment_post">Гостевую книгу</a>.</p>
+            </arcticle>
+        </div>
+    </div>
+{% endblock content %}

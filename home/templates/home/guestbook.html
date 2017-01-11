@@ -1,0 +1,32 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+    <div class="posts">
+        <h1>Гостевая книга</h1>
+        <div class="content">
+            <arcticle>
+            <p>Здесь публикуются отзывы наших клиентов. Если Вы воспользовались услугами нашего сервиса, Вы также можете <a href="#guest_post" class="guest_comment_post">оставить свой отзыв</a>.</p>
+                {% for comment in comments %}
+                    <div class="guest_comment">
+                        <h4>{{ comment.author }}</h4>
+                        <span class="date">{{ comment.created_date }}</span>
+                        <div>
+                            {% autoescape off%}{{ comment.text }}{% endautoescape %}
+                        </div>
+                    </div>
+                {% endfor %}
+                <h3>Оставить свой отзыв:</h3>
+                <div id="guest_post">
+                    <form action="" method="post">
+                        <label for="name_comment">Фамилия, Имя, Отчество:</label>
+                        <input  name="author" type="text" maxlength="30" id="name_comment" value="{{ form.author }}">
+                        <label for="text_comment">Ваше сообщение:</label>
+                        <textarea id="text_comment" name="text">{{ form.text }}</textarea>
+                        <input type="submit" value="Отправить" >
+                        {% csrf_token %}
+                    </form>
+                </div>
+             </arcticle>
+        </div>
+    </div>
+{% endblock content %}

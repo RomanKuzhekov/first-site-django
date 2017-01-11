@@ -1,0 +1,18 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+    <div class="posts">
+        <h1>Готовые дома от нашей компании</h1>
+            <div class="content">
+                <arcticle>
+                    <div class="photos">
+                        {% for post in photos %}
+                            {% if post.photo_img %}
+                                <a class="fancybox" href="{{ MEDIA_URL }}{{ post.photo_img }}" data-fancybox-group="gallery" title="Дома Волгограда"><img src="{{ MEDIA_URL }}{{ post.photo_img }}" alt="Дома Волгограда" id="photo"  /></a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </arcticle>
+            </div>
+    </div>
+{% endblock content %}

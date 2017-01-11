@@ -1,0 +1,87 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+    <div id="slider" class="slider_wrap">
+        {% for post in slider_up %}
+            {% if post.photo_img %}
+                <img src="{{ MEDIA_URL }}{{ post.photo_img }}" alt="Дома Волгограда"  />
+            {% endif %}
+        {% endfor %}
+        <span class="glyphicon glyphicon-circle-arrow-left prev"></span>
+        <span class="glyphicon glyphicon-circle-arrow-right next"></span>
+    </div>
+    <aside>
+        <div class="privilege">
+            <h2>НАШИ ПРЕИМУЩЕСТВА</h2>
+            <div>
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                СТРОИТЕЛЬСТВО ДОМОВ И КОТТЕДЖЕЙ ПО ТИПОВЫМ И ИНДИВИДУАЛЬНЫМ ПРОЕКТАМ.
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-cog"></span>
+                ВЫБОР ТЕХНОЛОГИИ СТРОИТЕЛЬСТВА И НАРУЖНОГО ДИЗАЙНА.
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-home"></span>
+                ВОЗМОЖНОСТЬ В ОДНОМ МЕСТЕ ЗАПРОЕКТИРОВАТЬ, ПОСТРОИТЬ И ВВЕСТИ В ЭКСПЛУАТАЦИЮ.
+            </div>
+            <div id="clear"></div>
+        </div>
+        <div class="row_order">
+            <h2>КАК ЗАКАЗАТЬ ДОМ?</h2>
+            <div>
+                <span class="glyphicon glyphicon-envelope"></span>
+                ОСТАВЬТЕ ЗАЯВКУ ДЛЯ ВЫЕЗДА ПРОЕКТИРОВЩИКА.
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-user"></span>
+                ВЫЗВАТЬ ПРОЕКТИРОВЩИКА НА МЕСТНОСТЬ, ОБМЕР ТЕРРИТОРИИ, ВЫБОР ТИПОВОГО ПРОЕКТА ИЛИ ПОДГОТОВКА ТЕХНИЧЕСКОГО ЗАДАНИЯ НА ПРОЕКТИРОВАНИЕ.
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-transfer"></span>
+                УТВЕРЖДЕНИЕ ЭСКИЗНОГО ПРОЕКТА, ОПЛАТА.
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-lock"></span>
+                ЗАКЛЮЧЕНИЕ ДОГОВОРА , СТРОИТЕЛЬСТВО.
+            </div>
+        </div>
+    </aside>
+    <div class="row_app">
+        <h3>Оставьте заявку для выезда проектировщика</h3>
+        {% if errors %}
+            <ul class="error_list">
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form action="" method="post">
+            <input name="author" placeholder="Ваше имя" maxlength="30"  type="text" value="{{ form.author }}">
+            <input name="phone" placeholder="Телефон" maxlength="11" type="text" value="{{ form.phone }}">
+            <input type="submit" value="Отправить">
+            {% csrf_token %}
+        </form>
+    </div>
+    <div class="slider_lower">
+        <h2>ОТ СЛОВ К ДЕЛУ</h2>
+        <div id="slider_low">
+            <div id="slider" class="slider_wrap">
+                {% for post in slider_down %}
+                    {% if post.photo_img %}
+                        <img src="{{ MEDIA_URL }}{{ post.photo_img }}" alt="Дома Волгограда"  />
+                    {% endif %}
+                {% endfor %}
+                <span class="glyphicon glyphicon-circle-arrow-left prev"></span>
+                <span class="glyphicon glyphicon-circle-arrow-right next"></span>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        {% for post in posts %}
+            <h1>{{ post.title }}</h1>
+            <a class="fancybox" href="{{ MEDIA_URL }}{{ post.post_img }}" data-fancybox-group="gallery" title="Дома Волгограда"><img src="{{ MEDIA_URL }}{{ post.post_img }}" alt="Дома Волгограда" /></a>
+            {% autoescape off%}{{ post.text }}{% endautoescape %}
+        {% endfor %}
+    </div>
+{% endblock content %}
